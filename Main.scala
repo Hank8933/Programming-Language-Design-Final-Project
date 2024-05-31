@@ -1,10 +1,10 @@
 package project
 
 import project.commands._
-import scala.collection.mutable
+import scala.collection.immutable
 
 object Main extends App {
-  val commands = mutable.Map[Int, Command](
+  val commands = immutable.Map[Int, Command](
     1 -> new CreateUserCommand,
     2 -> new CreateSheetCommand,
     3 -> new CheckSheetCommand,
@@ -29,10 +29,16 @@ object Main extends App {
     var continue = true
     while (continue) {
       displayMenu()
-      val choice = scala.io.StdIn.readInt()
-      commands.get(choice) match {
-        case Some(command) => command.execute()
-        case None => println("Invalid choice. Please select again.")
+      try {
+        val choice = scala.io.StdIn.readInt()
+        commands.get(choice) match {
+          case Some(command) => command.execute()
+          case None => println("Invalid choice. Please select again.")
+        }
+      }
+      catch {
+        case _: NumberFormatException =>
+          println("Invalid input. Please enter a number.")
       }
     }
   }
