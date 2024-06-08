@@ -5,7 +5,7 @@ import project.managers.{SheetManager, UserManager}
 class CreateSheetCommand extends Command {
   override def execute(): Unit = {
     print("> ")
-    val input = scala.io.StdIn.readLine().split(" ")
+    val input = scala.io.StdIn.readLine().split(", ")
     try {
       val userName = input(0)
       val sheetName = input(1)
@@ -19,7 +19,7 @@ class CreateSheetCommand extends Command {
     catch {
       case _: ArrayIndexOutOfBoundsException =>
         println("Invalid input. Please enter the command in the following format:")
-        println("<userName> <sheetName>")
+        println("<userName>, <sheetName>")
     }
   }
 }

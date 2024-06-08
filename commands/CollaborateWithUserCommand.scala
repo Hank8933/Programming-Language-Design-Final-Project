@@ -6,7 +6,7 @@ import project.Editable
 class CollaborateWithUserCommand extends Command {
   override def execute(): Unit = {
     print("> ")
-    val input = scala.io.StdIn.readLine().split(" ")
+    val input = scala.io.StdIn.readLine().split(", ")
     try {
       val ownerName = input(0)
       val sheetName = input(1)
@@ -29,7 +29,7 @@ class CollaborateWithUserCommand extends Command {
     catch {
       case _: ArrayIndexOutOfBoundsException =>
         println("Invalid input. Please enter the command in the following format:")
-        println("<ownerName> <sheetName> <collaboratorName>")
+        println("<ownerName>, <sheetName>, <collaboratorName>")
     }
     
   }
